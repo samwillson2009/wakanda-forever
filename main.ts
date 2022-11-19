@@ -1,0 +1,33 @@
+sprites.onOverlap(SpriteKind.Guard, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
+    Namor.setPosition(148, 2)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    Namor.setPosition(148, 2)
+})
+info.onScore(20, function () {
+    Namor.destroy()
+    scene.setBackgroundImage(assets.image`boston-bridge`)
+    game.over(true)
+    effects.confetti.startScreenEffect()
+    game.showLongText("\"We are Safe!\"", DialogLayout.Bottom)
+    Shuri.sayText("WAKANDA FOREVER", 5000, false)
+})
+let Namor: Sprite = null
+let Shuri: Sprite = null
+game.showLongText("Help Shuri, Okoye and Riri escape Namor(Press the /\"A/\"button to go to next screen)", DialogLayout.Full)
+game.showLongText("When game begin, press the ARROW KEY to move Shuri Okoye and Riri. If Namor catches you, you will lose points! ", DialogLayout.Full)
+game.showLongText("Earn 20 Points to win and to stay aliveyoumustkeepyour heart(s).", DialogLayout.Full)
+info.setLife(2)
+scene.setBackgroundImage(assets.image`wakanda`)
+Shuri = sprites.create(assets.image`shuri`, SpriteKind.Player)
+controller.moveSprite(Shuri)
+Shuri.setStayInScreen(true)
+Namor = sprites.create(assets.image`namor`, SpriteKind.Enemy)
+Namor.setPosition(148, 2)
+Namor.follow(Shuri)
+let Riri = sprites.create(assets.image`riri`, SpriteKind.Guard)
+let Okoye = sprites.create(assets.image`okoye`, SpriteKind.Guard)
+controller.moveSprite(Riri, 34, -53)
+controller.moveSprite(Okoye, 34, -53)
