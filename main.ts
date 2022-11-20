@@ -1,9 +1,9 @@
-sprites.onOverlap(SpriteKind.Guard, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeScoreBy(1)
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite2, otherSprite2) {
+    info.changeLifeBy(-1)
     Namor.setPosition(148, 2)
 })
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+sprites.onOverlap(SpriteKind.Guard, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
     Namor.setPosition(148, 2)
 })
 info.onScore(20, function () {
@@ -26,7 +26,7 @@ controller.moveSprite(Shuri)
 Shuri.setStayInScreen(true)
 Namor = sprites.create(assets.image`namor`, SpriteKind.Enemy)
 Namor.setPosition(148, 2)
-Namor.follow(Shuri)
+Namor.follow(Shuri, 30)
 let Riri = sprites.create(assets.image`riri`, SpriteKind.Guard)
 let Okoye = sprites.create(assets.image`okoye`, SpriteKind.Guard)
 controller.moveSprite(Riri, 34, -53)
